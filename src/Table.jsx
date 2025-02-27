@@ -4,30 +4,27 @@ const Table = () => {
   const [isOrdering, setIsOrdering] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [availableProducts] = useState([
-    { name: 'Sparglenal', price: 98 },
-    { name: 'Hamburger', price: 136 },
-    { name: 'Croque Moncliner', price: 136 },
-    { name: 'Water', price: 23 },
+    { name: 'Spaghetti', price: 18 },
+    { name: 'Hamburger', price: 19 },
+    { name: 'Croque Monsieur', price: 14 },
+    { name: 'Water', price: 2 },
   ]);
 
-  // Function to handle adding an order
   const handleAddOrder = () => {
     setIsOrdering(true);
   };
 
-  // Function to handle selecting a product
   const handleProductSelect = (product) => {
     setSelectedProducts([...selectedProducts, product]);
-    setIsOrdering(false); // Return to the table overview
+    setIsOrdering(false); 
   };
 
-  // Function to calculate the total price
   const calculateTotal = () => {
     return selectedProducts.reduce((total, product) => total + product.price, 0);
   };
 
   return (
-    <div>
+    <div className='table'>
       {/* Empty State */}
       {!isOrdering && selectedProducts.length === 0 && (
         <div>
@@ -53,7 +50,7 @@ const Table = () => {
       {!isOrdering && selectedProducts.length > 0 && (
         <div>
           <h3>Table 1</h3>
-          <p>DATA:</p>
+          <input value="name" type="text" />
           {selectedProducts.map((product, index) => (
             <div key={index}>
               <p>{product.name} - {product.price}$</p>

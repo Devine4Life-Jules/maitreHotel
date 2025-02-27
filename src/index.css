@@ -54,6 +54,20 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+
+.table {
+  background-color: white;
+  color: black;
+  text-align: left;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.tableContainer {
+  display: flex;
+  gap: 1rem;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

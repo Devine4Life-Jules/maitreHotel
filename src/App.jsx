@@ -8,7 +8,11 @@ function App() {
   
 
   return (
-    <Table></Table>
+    <div className='tableContainer'>
+      <Table />
+      <Table />
+    </div>
+    
 
   )
 }
