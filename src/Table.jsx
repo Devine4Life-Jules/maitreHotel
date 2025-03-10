@@ -4,6 +4,8 @@ import { useState } from 'react';
 const Table = ({ tableId, deleteTable }) => {
   const [isOrdering, setIsOrdering] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [inputValue, setInputValue] = useState("name");
+
   const [availableProducts] = useState([
     { name: 'Spaghetti', price: 18 },
     { name: 'Hamburger', price: 19 },
@@ -27,7 +29,13 @@ const Table = ({ tableId, deleteTable }) => {
   return (
     <div className="table">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3>Table {tableId}</h3> {/* ✅ Now properly numbered */}
+        <h3>Table {tableId}</h3> 
+
+        <input 
+            type="text" 
+            value={inputValue} 
+            onChange={(e) => setInputValue(e.target.value)} 
+          />
         <button onClick={deleteTable} style={{ backgroundColor: 'red', color: 'white' }}>
           Delete
         </button>
@@ -35,7 +43,7 @@ const Table = ({ tableId, deleteTable }) => {
 
       {!isOrdering && selectedProducts.length === 0 && (
         <div>
-          <p>DATA: None</p>
+          
           <button onClick={handleAddOrder}>ADD ORDER</button>
         </div>
       )}
@@ -53,7 +61,7 @@ const Table = ({ tableId, deleteTable }) => {
 
       {!isOrdering && selectedProducts.length > 0 && (
         <div>
-          <input defaultValue="name" type="text" />
+
           {selectedProducts.map((product, index) => (
             <div key={index}>
               <p>{product.name} - {product.price}$</p>
