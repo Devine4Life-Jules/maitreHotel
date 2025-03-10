@@ -22,6 +22,8 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      "react/prop-types":"off",
+
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -32,6 +34,7 @@ export default [
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
+        
       ],
     },
   },

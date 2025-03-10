@@ -1,28 +1,34 @@
-import { useState } from 'react'
-import Table from './Table'
-import './App.css'
+import { useState } from 'react';
+import Table from './Table';
+import './App.css';
 
 function App() {
+  const [tables, setTables] = useState([]);
 
-  const [tables, setTables] = useState([1]); 
 
   const addTable = () => {
-    setTables([...tables, tables.length + 1]); 
+    setTables([...tables, { id: Date.now() }]);  
+  };
+
+
+  const deleteTable = (id) => {
+    setTables(tables.filter(table => table.id !== id));
   };
 
   return (
     <div className="overview">
       <div className="tableContainer">
-        {/* Render tables based on the state */}
-        {tables.map((tableId) => (
-         <Table key={tableId} tableId={tableId} />
+        {tables.map((table, index) => (
+          <Table 
+            key={table.id} 
+            tableId={index + 1}  
+            deleteTable={() => deleteTable(table.id)} 
+          />
         ))}
-
       </div>
       <button onClick={addTable}>Add Table</button>
     </div>
   );
-
 }
 
-export default App
+export default App;

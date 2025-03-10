@@ -1,6 +1,7 @@
-import  { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const Table = ({ tableId }) => {
+const Table = ({ tableId, deleteTable }) => {
   const [isOrdering, setIsOrdering] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [availableProducts] = useState([
@@ -16,7 +17,7 @@ const Table = ({ tableId }) => {
 
   const handleProductSelect = (product) => {
     setSelectedProducts([...selectedProducts, product]);
-    setIsOrdering(false); 
+    setIsOrdering(false);
   };
 
   const calculateTotal = () => {
@@ -24,17 +25,21 @@ const Table = ({ tableId }) => {
   };
 
   return (
-    <div className='table'>
-      {/* Empty State */}
+    <div className="table">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3>Table {tableId}</h3> {/* ✅ Now properly numbered */}
+        <button onClick={deleteTable} style={{ backgroundColor: 'red', color: 'white' }}>
+          Delete
+        </button>
+      </div>
+
       {!isOrdering && selectedProducts.length === 0 && (
         <div>
-          <p>Table {tableId}</p>
           <p>DATA: None</p>
           <button onClick={handleAddOrder}>ADD ORDER</button>
         </div>
       )}
 
-      {/* Product Selection State */}
       {isOrdering && (
         <div>
           <h3>Select Products</h3>
@@ -46,11 +51,9 @@ const Table = ({ tableId }) => {
         </div>
       )}
 
-      {/* Table Overview State */}
       {!isOrdering && selectedProducts.length > 0 && (
         <div>
-          <h3>Table {tableId}</h3>
-          <input value="name" type="text" />
+          <input defaultValue="name" type="text" />
           {selectedProducts.map((product, index) => (
             <div key={index}>
               <p>{product.name} - {product.price}$</p>
@@ -63,5 +66,6 @@ const Table = ({ tableId }) => {
     </div>
   );
 };
+
 
 export default Table;
