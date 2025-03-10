@@ -15,8 +15,9 @@ function App() {
       <div className="tableContainer">
         {/* Render tables based on the state */}
         {tables.map((tableId) => (
-          <Table key={tableId} />
+         <Table key={tableId} tableId={tableId} />
         ))}
+
       </div>
       <button onClick={addTable}>Add Table</button>
     </div>

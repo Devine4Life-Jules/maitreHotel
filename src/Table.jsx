@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 
-const Table = () => {
+const Table = ({ tableId }) => {
   const [isOrdering, setIsOrdering] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [availableProducts] = useState([
@@ -28,7 +28,7 @@ const Table = () => {
       {/* Empty State */}
       {!isOrdering && selectedProducts.length === 0 && (
         <div>
-          <p>Table 1</p>
+          <p>Table {tableId}</p>
           <p>DATA: None</p>
           <button onClick={handleAddOrder}>ADD ORDER</button>
         </div>
@@ -49,7 +49,7 @@ const Table = () => {
       {/* Table Overview State */}
       {!isOrdering && selectedProducts.length > 0 && (
         <div>
-          <h3>Table 1</h3>
+          <h3>Table {tableId}</h3>
           <input value="name" type="text" />
           {selectedProducts.map((product, index) => (
             <div key={index}>
