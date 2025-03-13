@@ -22,6 +22,10 @@ const Table = ({ tableId, deleteTable }) => {
     setIsOrdering(false);
   };
 
+  const handleRemoveProduct = (index) => {
+    setSelectedProducts(selectedProducts.filter((_, i) => i !== index));
+  };
+
   const calculateTotal = () => {
     return selectedProducts.reduce((total, product) => total + product.price, 0);
   };
@@ -30,7 +34,6 @@ const Table = ({ tableId, deleteTable }) => {
     <div className="table">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h3>Table {tableId}</h3> 
-
         <input 
             type="text" 
             value={inputValue} 
@@ -43,7 +46,6 @@ const Table = ({ tableId, deleteTable }) => {
 
       {!isOrdering && selectedProducts.length === 0 && (
         <div>
-          
           <button onClick={handleAddOrder}>ADD ORDER</button>
         </div>
       )}
@@ -61,10 +63,10 @@ const Table = ({ tableId, deleteTable }) => {
 
       {!isOrdering && selectedProducts.length > 0 && (
         <div>
-
           {selectedProducts.map((product, index) => (
-            <div key={index}>
+            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <p>{product.name} - {product.price}$</p>
+              <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</button>
             </div>
           ))}
           <p>TOTAL: {calculateTotal()}$</p>
@@ -74,6 +76,5 @@ const Table = ({ tableId, deleteTable }) => {
     </div>
   );
 };
-
 
 export default Table;
