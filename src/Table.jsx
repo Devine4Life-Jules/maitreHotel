@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 const Table = ({ tableId, deleteTable }) => {
   const [isOrdering, setIsOrdering] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [inputValue, setInputValue] = useState("name");
+  const [checkedItems, setCheckedItems] = useState({}); 
+
 
   const [availableProducts] = useState([
     { name: 'Spaghetti', price: 18 },
@@ -16,6 +17,14 @@ const Table = ({ tableId, deleteTable }) => {
   const handleAddOrder = () => {
     setIsOrdering(true);
   };
+
+  const handleChecked = (index) => {
+    setCheckedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index], // Toggle only the clicked checkbox
+    }));
+  };
+
 
   const handleProductSelect = (product) => {
     setSelectedProducts([...selectedProducts, product]);
@@ -65,7 +74,12 @@ const Table = ({ tableId, deleteTable }) => {
         <div>
           {selectedProducts.map((product, index) => (
             <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <p>{product.name} - {product.price}$</p>
+            <input 
+              type="checkbox" 
+              checked={checkedItems[index] || false} // Default to false if undefined
+              onChange={() => handleChecked(index)} 
+            />
+            <p>{product.name} - {product.price}$</p>
               <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</button>
             </div>
           ))}
