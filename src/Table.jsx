@@ -21,7 +21,7 @@ const Table = ({ tableId, deleteTable }) => {
   const handleChecked = (index) => {
     setCheckedItems((prev) => ({
       ...prev,
-      [index]: !prev[index], // Toggle only the clicked checkbox
+      [index]: !prev[index], 
     }));
   };
 

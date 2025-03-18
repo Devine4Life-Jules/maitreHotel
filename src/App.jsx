@@ -1,34 +1,38 @@
 import { useState } from 'react';
-import Table from './Table';
+import Area from './Area';
 import './App.css';
 
 function App() {
-  const [tables, setTables] = useState([]);
-
-
-  const addTable = () => {
-    setTables([...tables, { id: Date.now() }]);  
+  const [areas, setAreas] = useState([]);
+  const addArea = () => {
+    setAreas([...areas, { id: Date.now() }]);  
   };
 
 
-  const deleteTable = (id) => {
-    setTables(tables.filter(table => table.id !== id));
+  const deleteArea = (id) => {
+    setAreas(tables.filter(area => area.id !== id));
   };
 
-  return (
-    <div className="overview">
-      <div className="tableContainer">
-        {tables.map((table, index) => (
-          <Table 
-            key={table.id} 
-            tableId={index + 1}  
-            deleteTable={() => deleteTable(table.id)} 
-          />
-        ))}
-      </div>
-      <button onClick={addTable}>Add Table</button>
+  return(
+    <div>
+          <div className="areaContainer">
+          {areas.map((area, index) => (
+            <Area 
+              key={area.id} 
+              areaId={index + 1}  
+              deleteArea={() => deleteArea(area.id)} 
+            />
+          ))}
+        </div>
+      <button onClick={addArea}>Add Area</button>
+      
+
     </div>
-  );
+
+  )
+  
+
+
 }
 
 export default App;

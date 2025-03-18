@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.tableContainer {
+  background-color: rgb(184, 188, 189);
+  border-radius: 10px;
+  padding: 2rem;
+  min-height: 500px;
+  margin: 1rem;
+  border: 2px solid rgb(10, 10, 10);
+}
