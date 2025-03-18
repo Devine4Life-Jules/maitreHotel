@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Table from './Table';
 
-const Area = () => {
+const Area = ( { areaId, deleteArea } ) => {
     const [tables, setTables] = useState([]);
 
 
@@ -16,7 +16,9 @@ const Area = () => {
   
     return (
       <div className="overview">
+        
         <div className="tableContainer">
+        <button onClick={deleteArea}>Remove Area</button>
           {tables.map((table, index) => (
             <Table 
               key={table.id} 

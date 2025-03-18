@@ -10,19 +10,22 @@ function App() {
 
 
   const deleteArea = (id) => {
-    setAreas(tables.filter(area => area.id !== id));
+    setAreas(areas.filter(area => area.id !== id));
   };
 
   return(
     <div>
           <div className="areaContainer">
-          {areas.map((area, index) => (
-            <Area 
-              key={area.id} 
-              areaId={index + 1}  
-              deleteArea={() => deleteArea(area.id)} 
-            />
-          ))}
+          
+          <div>
+            {areas.map((area, index) => (
+              <Area
+                key={area.id}
+                areaId={area.id}
+                deleteArea={() => deleteArea(area.id)}
+              />
+            ))}
+          </div>
         </div>
       <button onClick={addArea}>Add Area</button>
       
