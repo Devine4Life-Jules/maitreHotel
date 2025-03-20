@@ -9,6 +9,8 @@ const FloorPlan = () => {
 
     const [isOrdering, setIsOrdering] = useState(false);
     const [selectedTable, setSelectedTable] = useState(null);
+    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [checkedItems, setCheckedItems] = useState({}); 
 
     const availableProducts = [
         { name: 'Spaghetti', price: 18 },
@@ -29,20 +31,50 @@ const FloorPlan = () => {
         setSelectedTable(null);
     };
 
+    const handleChecked = (index) => {
+        setCheckedItems((prev) => ({
+          ...prev,
+          [index]: !prev[index], 
+        }));
+      };
+
+    const handleRemoveProduct = (index) => {
+        setSelectedProducts(selectedProducts.filter((_, i) => i !== index));
+      };
+
+    const handleProductSelect = (product) => {
+        setSelectedProducts([...selectedProducts, product]);
+        
+      };
+
 
     return (
         <div style={{ height: "60vh", width: "60vw" }}>
 
             {isOrdering ? (
-                                <div className="ordering-mode">
-                                <h2>Ordering for Table {selectedTable}</h2>
-                                <ul>
-                                    {availableProducts.map((product, index) => (
-                                        <li key={index}>{product.name} - ${product.price}</li>
-                                    ))}
-                                </ul>
-                                <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
-                            </div>
+                <div className="ordering-mode">
+                <h2>Ordering for Table {selectedTable}</h2>
+                <ul>
+                    {availableProducts.map((product, index) => (
+                        <button onClick={() => handleProductSelect(product)} class="option" key={index}>{product.name} - ${product.price}</button>
+                    ))}
+                </ul>
+                <div>
+                {selectedProducts.map((product, index) => (
+                <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <input 
+                type="checkbox" 
+                checked={checkedItems[index] || false} // Default to false if undefined
+                onChange={() => handleChecked(index)} 
+                />
+                <p>{product.name} - {product.price}$</p>
+                <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</button>
+                </div>
+                ))}
+                </div>
+                
+                <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
+                </div>
             ) : (<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 1080">
                 <g>
                     <g id="Layer_1">

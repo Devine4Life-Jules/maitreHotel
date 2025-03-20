@@ -51,6 +51,13 @@
 }
 
 
+.option {
+  display: block;
+  margin: .5rem auto;
+  color: black;
+  background-color: gray;
+}
+
 
 .spot {
   transition: .2s ease;
