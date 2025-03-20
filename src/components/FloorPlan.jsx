@@ -9,7 +9,7 @@ const FloorPlan = () => {
 
     const [isOrdering, setIsOrdering] = useState(false);
     const [selectedTable, setSelectedTable] = useState(null);
-    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [orders, setOrders] = useState({});
     const [checkedItems, setCheckedItems] = useState({}); 
 
     const availableProducts = [
@@ -38,15 +38,24 @@ const FloorPlan = () => {
         }));
       };
 
-    const handleRemoveProduct = (index) => {
-        setSelectedProducts(selectedProducts.filter((_, i) => i !== index));
-      };
+      const handleRemoveProduct = (index) => {
+        setOrders((prevOrders) => {
+            const updatedOrders = { ...prevOrders };
+            updatedOrders[selectedTable] = updatedOrders[selectedTable].filter((_, i) => i !== index);
+            return updatedOrders;
+        });
+    };
 
-    const handleProductSelect = (product) => {
-        setSelectedProducts([...selectedProducts, product]);
-        
-      };
-
+      const handleProductSelect = (product) => {
+        setOrders((prevOrders) => {
+            const updatedOrders = { ...prevOrders };
+            if (!updatedOrders[selectedTable]) {
+                updatedOrders[selectedTable] = [];
+            }
+            updatedOrders[selectedTable] = [...updatedOrders[selectedTable], product];
+            return updatedOrders;
+        });
+    };
 
     return (
         <div style={{ height: "60vh", width: "60vw" }}>
@@ -56,22 +65,24 @@ const FloorPlan = () => {
                 <h2>Ordering for Table {selectedTable}</h2>
                 <ul>
                     {availableProducts.map((product, index) => (
-                        <button onClick={() => handleProductSelect(product)} class="option" key={index}>{product.name} - ${product.price}</button>
+                        <button onClick={() => handleProductSelect(product)} className="option" key={index}>{product.name} - ${product.price}</button>
                     ))}
                 </ul>
                 <div>
-                {selectedProducts.map((product, index) => (
-                <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <input 
-                type="checkbox" 
-                checked={checkedItems[index] || false} // Default to false if undefined
-                onChange={() => handleChecked(index)} 
-                />
-                <p>{product.name} - {product.price}$</p>
-                <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</button>
-                </div>
-                ))}
-                </div>
+                        {orders[selectedTable]?.map((product, index) => (
+                            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={checkedItems[index] || false}
+                                    onChange={() => handleChecked(index)}
+                                />
+                                <p>{product.name} - {product.price}$</p>
+                                <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>
+                                    Remove
+                                </button>
+                            </div>
+                        ))}
+                    </div>
                 
                 <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
                 </div>
