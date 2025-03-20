@@ -4,7 +4,7 @@ import Area from './Area';
 
 const TryOut1 = () => {
 
-
+    //test
     const [areas, setAreas] = useState([{ id: 1 },
         { id: 2 },]);
       const addArea = () => {
