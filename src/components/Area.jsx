@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Table from './Table';
+import Table from '../components/Table';
 
 const Area = ( { areaId, deleteArea } ) => {
     const [tables, setTables] = useState([]);

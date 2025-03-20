@@ -1,34 +1,13 @@
 import { useState } from 'react';
-import Area from './Area';
+import TryOut1 from './components/tryout1';
 import './App.css';
 
 function App() {
-  const [areas, setAreas] = useState([{ id: 1 },
-    { id: 2 },]);
-  const addArea = () => {
-    setAreas([...areas, { id: Date.now() }]);  
-  };
 
-
-  const deleteArea = (id) => {
-    setAreas(areas.filter(area => area.id !== id));
-  };
 
   return(
     <div>
-          <div className="areaContainer">
-          
-          <div>
-            {areas.map((area, index) => (
-              <Area
-                key={area.id}
-                areaId={area.id}
-                deleteArea={() => deleteArea(area.id)}
-              />
-            ))}
-          </div>
-        </div>
-      <button onClick={addArea}>Add Area</button>
+      <TryOut1> </TryOut1>
       
 
     </div>
