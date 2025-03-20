@@ -65,6 +65,36 @@ const FloorPlan = () => {
                             <rect fill="#efefef" x="1592.5" y="543.1" width="89.4" height="89.4" />
                         </g>
                     </g>
+                    <g id="barSpot5">
+                    <g>
+                        <rect className="cls-1" fill="#efefef" x="1667.6" y="317.5" width="89.4" height="89.4"/>
+                        <path d="M1756.4,318v88.4h-88.4v-88.4h88.4M1757.4,317h-90.4v90.4h90.4v-90.4h0Z"/>
+                    </g>
+                    </g>
+                    <g id="barSpot4">
+                    <g>
+                        <rect className="cls-1" fill="#efefef" x="1514.1" y="317.5" width="89.4" height="89.4"/>
+                        <path d="M1603,318v88.4h-88.4v-88.4h88.4M1604,317h-90.4v90.4h90.4v-90.4h0Z"/>
+                    </g>
+                    </g>
+                    <g id="barSpot3">
+                    <g>
+                        <rect className="cls-1" fill="#efefef" x="1370.1" y="317.5" width="89.4" height="89.4"/>
+                        <path d="M1459,318v88.4h-88.4v-88.4h88.4M1460,317h-90.4v90.4h90.4v-90.4h0Z"/>
+                    </g>
+                    </g>
+                    <g id="barSpot2">
+                    <g>
+                        <rect className="cls-1" fill="#efefef" x="1225.1" y="317.5" width="89.4" height="89.4"/>
+                        <path d="M1313.9,318v88.4h-88.4v-88.4h88.4M1314.9,317h-90.4v90.4h90.4v-90.4h0Z"/>
+                    </g>
+                    </g>
+                    <g id="barSpot1">
+                    <g>
+                        <rect className="cls-1" fill="#efefef" x="1084.1" y="317.5" width="89.4" height="89.4"/>
+                        <path d="M1172.9,318v88.4h-88.4v-88.4h88.4M1173.9,317h-90.4v90.4h90.4v-90.4h0Z"/>
+                    </g>
+                    </g>
                     <g id="table2">
                         <g>
                             <rect fill="#b7b7b7" x="822.6" y="679.7" width="196.5" height="222" />
