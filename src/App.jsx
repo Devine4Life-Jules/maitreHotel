@@ -3,7 +3,8 @@ import Area from './Area';
 import './App.css';
 
 function App() {
-  const [areas, setAreas] = useState([]);
+  const [areas, setAreas] = useState([{ id: 1 },
+    { id: 2 },]);
   const addArea = () => {
     setAreas([...areas, { id: Date.now() }]);  
   };
