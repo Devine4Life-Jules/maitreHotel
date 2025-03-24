@@ -5,15 +5,15 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    rollupOptions: {
-      output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]', // Prevent hashed filenames
-      },
-    },
-  },
+  // build: {
+  //   outDir: 'dist',
+  //   assetsDir: 'assets',
+  //   rollupOptions: {
+  //     output: {
+  //       entryFileNames: '[name].js',
+  //       chunkFileNames: '[name].js',
+  //       assetFileNames: '[name].[ext]', // Prevent hashed filenames
+  //     },
+  //   },
+  // },
 })
