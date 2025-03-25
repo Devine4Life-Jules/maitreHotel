@@ -1,12 +1,14 @@
 import './App.css';
-import FloorPlan2 from './components/FloorPlan2';
+import FloorPlan from './components/FloorPlan';
+// import FloorPlan2 from './components/FloorPlan2';
 
 function App() {
 //test
 
   return(
     <div>
-      <FloorPlan2></FloorPlan2>
+      <FloorPlan></FloorPlan>
+      {/* <FloorPlan2></FloorPlan2> */}
       
 
     </div>
