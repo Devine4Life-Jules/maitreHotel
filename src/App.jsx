@@ -1,5 +1,5 @@
 import './App.css';
-import FloorPlan from './components/FloorPlan.jsx';
+import FloorPlan from './components/FloorPlan.jsx'
 
 function App() {
 //test
