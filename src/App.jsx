@@ -1,6 +1,6 @@
 import './App.css';
 import FloorPlan from './components/FloorPlan';
-// import FloorPlan2 from './components/FloorPlan2';
+
 
 function App() {
 //test
