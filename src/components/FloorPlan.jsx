@@ -46,6 +46,18 @@ const FloorPlan = () => {
         });
     };
 
+
+    const handleClearAll = () => {
+        setOrders((prevOrders) => {
+            const updatedOrders = { ...prevOrders };
+            updatedOrders[selectedTable] = []; 
+            return updatedOrders;
+        });
+        setCheckedItems({}); 
+    };
+
+
+
       const handleProductSelect = (product) => {
         setOrders((prevOrders) => {
             const updatedOrders = { ...prevOrders };
@@ -82,6 +94,7 @@ const FloorPlan = () => {
                                 </button>
                             </div>
                         ))}
+                        <button onClick={handleClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>Clear All </button>
                     </div>
                 
                 <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
