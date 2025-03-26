@@ -68,6 +68,12 @@ button:focus-visible {
   gap: 1rem;
 }
 
+.menu {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 15px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

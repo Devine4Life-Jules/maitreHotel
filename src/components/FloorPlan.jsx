@@ -75,7 +75,7 @@ const FloorPlan = () => {
             {isOrdering ? (
                 <div className="ordering-mode">
                 <h2>Ordering for Table {selectedTable}</h2>
-                <ul>
+                <ul class="menu">
                     {availableProducts.map((product, index) => (
                         <button onClick={() => handleProductSelect(product)} className="option" key={index}>{product.name} - ${product.price}</button>
                     ))}
