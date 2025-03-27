@@ -1,21 +1,16 @@
 import { useState } from "react";
-
+import availableProducts from '../availableProducts.js'
 
 
 const FloorPlan = () => {
 
     const [isOrdering, setIsOrdering] = useState(false);
     const [selectedTable, setSelectedTable] = useState(null);
-    const [orders, setOrders] = useState({});
+    const [orders, setOrders] = useState({ table1: [{ name: "Water", price: 2, quantity: 1 }],});
     const [checkedItems, setCheckedItems] = useState({}); 
     const [showBill, setShowBill] = useState(false); 
 
-    const availableProducts = [
-        { name: 'Spaghetti', price: 18 },
-        { name: 'Hamburger', price: 19 },
-        { name: 'Croque Monsieur', price: 14 },
-        { name: 'Water', price: 2 },
-    ];
+
 
 
     const handleTableClick = (tableId) => {
@@ -115,7 +110,7 @@ const FloorPlan = () => {
     <h2>Ordering for Table {selectedTable}</h2>
 
     {/* Product Selection Buttons */}
-    <ul class="menu">
+    <ul className="menu">
         {availableProducts.map((product, index) => (
             <button onClick={() => handleProductSelect(product)} className="option" key={index}>
                 {product.name} - ${product.price}
