@@ -1,5 +1,6 @@
 import { useState } from "react";
-import availableProducts from '../availableProducts.js'
+import OrderMenu from "./OrderMenu.jsx";
+import availableProducts from "../availableProducts.js";
 
 
 const FloorPlan = () => {
@@ -106,80 +107,16 @@ const FloorPlan = () => {
         <div style={{ height: "60vh", width: "60vw" }}>
 
             {isOrdering ? (
-    <div className="ordering-mode">
-    <h2>Ordering for Table {selectedTable}</h2>
-
-    {/* Product Selection Buttons */}
-    <ul className="menu">
-        {availableProducts.map((product, index) => (
-            <button onClick={() => handleProductSelect(product)} className="option" key={index}>
-                {product.name} - ${product.price}
-            </button>
-        ))}
-    </ul>
-
-    {/* Order List */}
-    <div>
-        {orders[selectedTable]?.length > 0 ? (
-            orders[selectedTable].map((product, index) => (
-                <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <input
-                    type="checkbox"
-                    checked={!!checkedItems[product.name]}
-                    onChange={() => handleChecked(product.name)}
-                />
-                    <p>{product.name} - ${product.price} (x{product.quantity})</p>
-                    
-                    <button onClick={() => handleDecreaseProduct(product.name)}>-</button>
-
-                    <button onClick={() => handleProductSelect(product)}>+</button>
-
-                    <button onClick={() => handleRemoveProduct(product.name)} style={{ backgroundColor: 'red', color: 'white' }}>
-                        Remove
-                    </button>
-                </div>
-            ))
-        ) : (
-            <p>No items added yet.</p>
-        )}
-    </div>
-
-    {/* Clear All Button */}
-    <button onClick={handleClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>
-        Clear All
-    </button>
-    <button onClick={() => setShowBill(true)} style={{ backgroundColor: 'green', color: 'white' }}>
-    Make Bill
-    </button>
-    {showBill && (
-                <div className="bill-modal">
-                    
-                    <div>
-                    <h2>Bill for Table {selectedTable}</h2>
-                        {orders[selectedTable]?.length > 0 ? (
-                            <ul>
-                                {orders[selectedTable].map((product, index) => (
-                                    <li key={index}>
-                                        {product.name} (x{product.quantity}) - ${product.price * product.quantity}
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>No items in this order.</p>
-                        )}
-                                            <h3>Total: ${calculateTotal()}</h3>
-                    <button onClick={() => setShowBill(false)} style={{ backgroundColor: 'gray', color: 'white' }}>
-                        Close
-                    </button>
-                    </div>
-
-                </div>
-            )}
-
-
-    {/* Close Ordering Mode */}
-    <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
-</div>
+                                <OrderMenu 
+                                selectedTable={selectedTable}
+                                availableProducts={availableProducts}
+                                orders={orders}
+                                onAddProduct={handleProductSelect}
+                                onDecreaseProduct={handleDecreaseProduct}
+                                onRemoveProduct={handleRemoveProduct}
+                                onClearAll={handleClearAll}
+                                onClose={handleCloseOrdering}
+                            />
             ) : (<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 1080">
                 <g>
                     <g id="Layer_1">
