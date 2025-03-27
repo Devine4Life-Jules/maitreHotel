@@ -1,9 +1,6 @@
 import { useState } from "react";
 
 
-const alertTest = () => {
-    alert("test");
-}
 
 const FloorPlan = () => {
 
@@ -11,6 +8,7 @@ const FloorPlan = () => {
     const [selectedTable, setSelectedTable] = useState(null);
     const [orders, setOrders] = useState({});
     const [checkedItems, setCheckedItems] = useState({}); 
+    const [showBill, setShowBill] = useState(false); 
 
     const availableProducts = [
         { name: 'Spaghetti', price: 18 },
@@ -30,6 +28,12 @@ const FloorPlan = () => {
         setIsOrdering(false);
         setSelectedTable(null);
     };
+
+    const calculateTotal = () => {
+        if (!orders[selectedTable]) return 0;
+        return orders[selectedTable].reduce((total, item) => total + item.price * item.quantity, 0);
+    };
+    
 
     const handleChecked = (index) => {
         setCheckedItems((prev) => ({
@@ -149,6 +153,34 @@ const FloorPlan = () => {
     <button onClick={handleClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>
         Clear All
     </button>
+    <button onClick={() => setShowBill(true)} style={{ backgroundColor: 'green', color: 'white' }}>
+    Make Bill
+    </button>
+    {showBill && (
+                <div className="bill-modal">
+                    
+                    <div>
+                    <h2>Bill for Table {selectedTable}</h2>
+                        {orders[selectedTable]?.length > 0 ? (
+                            <ul>
+                                {orders[selectedTable].map((product, index) => (
+                                    <li key={index}>
+                                        {product.name} (x{product.quantity}) - ${product.price * product.quantity}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No items in this order.</p>
+                        )}
+                                            <h3>Total: ${calculateTotal()}</h3>
+                    <button onClick={() => setShowBill(false)} style={{ backgroundColor: 'gray', color: 'white' }}>
+                        Close
+                    </button>
+                    </div>
+
+                </div>
+            )}
+
 
     {/* Close Ordering Mode */}
     <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
