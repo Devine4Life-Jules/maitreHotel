@@ -38,67 +38,121 @@ const FloorPlan = () => {
         }));
       };
 
-      const handleRemoveProduct = (index) => {
+      const handleRemoveProduct = (productName) => {
         setOrders((prevOrders) => {
-            const updatedOrders = { ...prevOrders };
-            updatedOrders[selectedTable] = updatedOrders[selectedTable].filter((_, i) => i !== index);
-            return updatedOrders;
+            return {
+                ...prevOrders,
+                [selectedTable]: prevOrders[selectedTable]
+                    ? prevOrders[selectedTable]
+                          .map((item) =>
+                              item.name === productName
+                                  ? { ...item, quantity: item.quantity = 0 }
+                                  : item
+                          )
+                          .filter((item) => item.quantity > 0)
+                    : [],
+            };
         });
     };
+
+
+    const handleDecreaseProduct = (productName) => {
+        setOrders((prevOrders) => {
+            return {
+                ...prevOrders,
+                [selectedTable]: prevOrders[selectedTable]
+                    ? prevOrders[selectedTable]
+                          .map((item) =>
+                              item.name === productName
+                                  ? { ...item, quantity: item.quantity - 1 }
+                                  : item
+                          )
+                          .filter((item) => item.quantity > 0)
+                    : [],
+            };
+        });
+    };
+    
+    
 
 
     const handleClearAll = () => {
         setOrders((prevOrders) => {
             const updatedOrders = { ...prevOrders };
-            updatedOrders[selectedTable] = []; 
+            updatedOrders[selectedTable] = [];
             return updatedOrders;
         });
-        setCheckedItems({}); 
     };
 
 
-
-      const handleProductSelect = (product) => {
+    const handleProductSelect = (product) => {
         setOrders((prevOrders) => {
-            const updatedOrders = { ...prevOrders };
-            if (!updatedOrders[selectedTable]) {
-                updatedOrders[selectedTable] = [];
-            }
-            updatedOrders[selectedTable] = [...updatedOrders[selectedTable], product];
-            return updatedOrders;
+            return {
+                ...prevOrders,
+                [selectedTable]: prevOrders[selectedTable]
+                    ? prevOrders[selectedTable].map((item) =>
+                          item.name === product.name
+                              ? { ...item, quantity: item.quantity + 1 }
+                              : item
+                      ).concat(prevOrders[selectedTable].some((item) => item.name === product.name) ? [] : [{ ...product, quantity: 1 }])
+                    : [{ ...product, quantity: 1 }],
+            };
         });
     };
+    
+
+
 
     return (
         <div style={{ height: "60vh", width: "60vw" }}>
 
             {isOrdering ? (
-                <div className="ordering-mode">
-                <h2>Ordering for Table {selectedTable}</h2>
-                <ul class="menu">
-                    {availableProducts.map((product, index) => (
-                        <button onClick={() => handleProductSelect(product)} className="option" key={index}>{product.name} - ${product.price}</button>
-                    ))}
-                </ul>
-                <div>
-                        {orders[selectedTable]?.map((product, index) => (
-                            <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                <input
-                                    type="checkbox"
-                                    checked={checkedItems[index] || false}
-                                    onChange={() => handleChecked(index)}
-                                />
-                                <p>{product.name} - {product.price}$</p>
-                                <button onClick={() => handleRemoveProduct(index)} style={{ backgroundColor: 'red', color: 'white' }}>
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
-                        <button onClick={handleClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>Clear All </button>
-                    </div>
-                
-                <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
+    <div className="ordering-mode">
+    <h2>Ordering for Table {selectedTable}</h2>
+
+    {/* Product Selection Buttons */}
+    <ul class="menu">
+        {availableProducts.map((product, index) => (
+            <button onClick={() => handleProductSelect(product)} className="option" key={index}>
+                {product.name} - ${product.price}
+            </button>
+        ))}
+    </ul>
+
+    {/* Order List */}
+    <div>
+        {orders[selectedTable]?.length > 0 ? (
+            orders[selectedTable].map((product, index) => (
+                <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <input
+                    type="checkbox"
+                    checked={!!checkedItems[product.name]}
+                    onChange={() => handleChecked(product.name)}
+                />
+                    <p>{product.name} - ${product.price} (x{product.quantity})</p>
+                    
+                    <button onClick={() => handleDecreaseProduct(product.name)}>-</button>
+
+                    <button onClick={() => handleProductSelect(product)}>+</button>
+
+                    <button onClick={() => handleRemoveProduct(product.name)} style={{ backgroundColor: 'red', color: 'white' }}>
+                        Remove
+                    </button>
                 </div>
+            ))
+        ) : (
+            <p>No items added yet.</p>
+        )}
+    </div>
+
+    {/* Clear All Button */}
+    <button onClick={handleClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>
+        Clear All
+    </button>
+
+    {/* Close Ordering Mode */}
+    <button onClick={handleCloseOrdering}>Close Ordering Mode</button>
+</div>
             ) : (<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 1080">
                 <g>
                     <g id="Layer_1">
