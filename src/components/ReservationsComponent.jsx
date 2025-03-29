@@ -17,17 +17,18 @@ const ReservationsComponent = ({ reservations, addReservation, removeReservation
       people: parseInt(people, 10),
     };
 
-    // Call the addReservation passed from the parent (App)
     addReservation(newReservation);
 
-    // Clear the input fields after adding the reservation
     setName('');
     setHour('');
     setPeople('');
   };
 
   const currentTime = new Date();
-  const futureReservations = reservations.filter((res) => res.time > currentTime);
+
+  const sortedReservations = reservations.sort((a, b) => a.time - b.time);
+  const upcomingReservations = sortedReservations.filter((res) => res.time > currentTime);
+  const lateReservations = sortedReservations.filter((res) => res.time <= currentTime);
 
   return (
     <div className="p-4">
@@ -55,13 +56,30 @@ const ReservationsComponent = ({ reservations, addReservation, removeReservation
         />
         <button type="submit" className="p-2 bg-blue-500 text-white rounded">Add</button>
       </form>
-      <ul className="space-y-2">
-        {futureReservations.map((res, index) => (
+
+      <h3 className="text-xl mb-2">Upcoming Reservations</h3>
+      <ul className="space-y-2 mb-4">
+        {upcomingReservations.map((res, index) => (
           <li key={index} className="p-2 border rounded">
-            {res.name} - {res.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {res.people} people <button onClick={() => removeReservation(res)}>Remove</button>
+            {res.name} - {res.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {res.people} people 
+            <button onClick={() => removeReservation(res)} className="ml-2 p-1 bg-red-500 text-white rounded">Remove</button>
           </li>
         ))}
       </ul>
+
+      {lateReservations.length > 0 && (
+        <>
+          <h3 className="text-xl mb-2 text-red-600">Late Reservations</h3>
+          <ul className="space-y-2">
+            {lateReservations.map((res, index) => (
+              <li key={index} className="p-2 border rounded bg-red-100">
+                {res.name} - {res.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {res.people} people 
+                <button onClick={() => removeReservation(res)} className="ml-2 p-1 bg-red-500 text-white rounded">Remove</button>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
