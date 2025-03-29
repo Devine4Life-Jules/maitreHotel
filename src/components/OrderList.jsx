@@ -1,6 +1,6 @@
 const OrderList = ({ orders, onIncrease, onDecrease, onRemove }) => {
     return (
-        <div>
+        <div class="orderList">
             {orders?.length > 0 ? (
                 orders.map((product, index) => (
                     <div key={index} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

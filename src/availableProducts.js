@@ -6,6 +6,7 @@ const availableProducts = [
     { name: "Water", price: 2 },
     { name: "Beer", price: 2 },
     { name: "Wine Glass", price: 5 },
+    { name: "Coke", price: 2 },
     { name: "Wine Bottle", price: 20 },
 
 
