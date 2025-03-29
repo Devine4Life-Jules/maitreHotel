@@ -6,6 +6,12 @@ import { HashRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
   const [reservations, setReservations] = useState([]);
+  const [orders, setOrders] = useState({
+    table1: [{ name: "Water", price: 2, quantity: 1 }],
+    table6: [{ name: "Hamburger", price: 19, quantity: 2 }],
+  });
+  const [selectedTable, setSelectedTable] = useState(null);
+  const [isOrdering, setIsOrdering] = useState(false);
 
   const addReservation = (reservation) => {
     setReservations((prev) => [...prev, reservation].sort((a, b) => a.time - b.time));
@@ -17,8 +23,23 @@ function App() {
     );
   };
 
-  const Home = () => <FloorPlan />;
-  const ReservationsPage = () => <ReservationsComponent reservations={reservations} addReservation={addReservation} removeReservation={removeReservation} />;
+  const Home = () => (
+    <FloorPlan
+      orders={orders}
+      selectedTable={selectedTable}
+      isOrdering={isOrdering}
+      setOrders={setOrders}
+      setSelectedTable={setSelectedTable}
+      setIsOrdering={setIsOrdering}
+    />
+  );
+  const ReservationsPage = () => (
+    <ReservationsComponent
+      reservations={reservations}
+      addReservation={addReservation}
+      removeReservation={removeReservation}
+    />
+  );
 
   return (
     <div>
