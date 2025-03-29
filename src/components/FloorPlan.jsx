@@ -9,7 +9,7 @@ const FloorPlan = () => {
 
     const [isOrdering, setIsOrdering] = useState(false);
     const [selectedTable, setSelectedTable] = useState(null);
-    const [orders, setOrders] = useState({ table1: [{ name: "Water", price: 2, quantity: 1 }],});
+    const [orders, setOrders] = useState({ table1: [{ name: "Water", price: 2, quantity: 1 }],table6: [{ name: "Hamburger", price: 19, quantity: 2 }],});
     const [checkedItems, setCheckedItems] = useState({}); 
     const [showBill, setShowBill] = useState(false); 
 
