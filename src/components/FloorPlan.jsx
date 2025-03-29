@@ -1,5 +1,6 @@
 import { useState } from "react";
 import OrderMenu from "./OrderMenu.jsx";
+import BillModal from "./BillModal.jsx";
 import availableProducts from "../availableProducts.js";
 
 
@@ -35,12 +36,20 @@ const FloorPlan = () => {
     };
     
 
+    const handleGetBill = () => {
+        setShowBill(true); 
+    };
+
     const handleChecked = (index) => {
         setCheckedItems((prev) => ({
           ...prev,
           [index]: !prev[index], 
         }));
       };
+
+      const handleCloseBill = () => {
+        setShowBill(false);
+    };
 
       const handleRemoveProduct = (productName) => {
         setOrders((prevOrders) => {
@@ -120,6 +129,8 @@ const FloorPlan = () => {
                                 onRemoveProduct={handleRemoveProduct}
                                 onClearAll={handleClearAll}
                                 onClose={handleCloseOrdering}
+                                calculateTotal={calculateTotal}
+                                onGetBill={handleGetBill} 
                             />
             ) : (<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1920 1080">
                 <g>
@@ -264,6 +275,12 @@ const FloorPlan = () => {
                     </g>
                 </g>
             </svg>)}
+            <BillModal
+                isOpen={showBill}
+                onClose={handleCloseBill}
+                orders={orders[selectedTable] || []}
+                total={calculateTotal()}
+            />
             
             
         </div>
