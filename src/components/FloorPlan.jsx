@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OrderMenu from "./OrderMenu.jsx";
 import BillModal from "./BillModal.jsx";
 import Map from "./Map.jsx"
@@ -13,7 +13,12 @@ const FloorPlan = () => {
     const [checkedItems, setCheckedItems] = useState({}); 
     const [showBill, setShowBill] = useState(false); 
 
-
+    useEffect(() => {
+        setIsOrdering(false);
+        setSelectedTable(null);
+        setOrders({});
+        setShowBill(false);
+    }, []);
 
 
     const handleTableClick = (tableId) => {
