@@ -13,12 +13,7 @@ const FloorPlan = () => {
     const [checkedItems, setCheckedItems] = useState({}); 
     const [showBill, setShowBill] = useState(false); 
 
-    useEffect(() => {
-        setIsOrdering(false);
-        setSelectedTable(null);
-        setOrders({});
-        setShowBill(false);
-    }, []);
+
 
 
     const handleTableClick = (tableId) => {
