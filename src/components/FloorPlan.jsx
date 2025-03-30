@@ -5,7 +5,6 @@ import Map from "./Map.jsx";
 import availableProducts from "../availableProducts.js";
 
 const FloorPlan = ({ orders, selectedTable, isOrdering, setOrders, setSelectedTable, setIsOrdering }) => {
-  const [checkedItems, setCheckedItems] = useState({});
   const [showBill, setShowBill] = useState(false);
 
   const handleTableClick = (tableId) => {
@@ -24,19 +23,13 @@ const FloorPlan = ({ orders, selectedTable, isOrdering, setOrders, setSelectedTa
   };
 
   const getTableFill = (tableId) => {
-    return orders[tableId] && orders[tableId].length > 0 ? "#FF6347" : "#b7b7b7"; // Active: Tomato, Inactive: Gray
+    return orders[tableId] && orders[tableId].length > 0 ? "#FF6347" : "#537f4b"; 
   };
 
   const handleGetBill = () => {
     setShowBill(true);
   };
 
-  const handleChecked = (index) => {
-    setCheckedItems((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
 
   const handleCloseBill = () => {
     setShowBill(false);
@@ -106,7 +99,7 @@ const FloorPlan = ({ orders, selectedTable, isOrdering, setOrders, setSelectedTa
   };
 
   return (
-    <div style={{ height: "60vh", width: "60vw" }}>
+    <div>
       {isOrdering ? (
         <OrderMenu
           selectedTable={selectedTable}

@@ -5,10 +5,16 @@ import { useState } from 'react';
 import { HashRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 
 function App() {
-  const [reservations, setReservations] = useState([]);
-  const [orders, setOrders] = useState({
+
+  
+
+  const [reservations, setReservations] = useState([
+    { name: "jules", time: "01:23", people: "3" }
+  ]);
+    const [orders, setOrders] = useState({
     table1: [{ name: "Water", price: 2, quantity: 1 }],
     table6: [{ name: "Hamburger", price: 19, quantity: 2 }],
+    barSpot2: [{ name: "coke", price: 2, quantity: 3 }],
   });
   const [selectedTable, setSelectedTable] = useState(null);
   const [isOrdering, setIsOrdering] = useState(false);
@@ -42,7 +48,7 @@ function App() {
   );
 
   return (
-    <div>
+    <div style={{ height: "60vh", width: "60vw" }}>
       <h1>Maitre d'Hotel</h1>
       <Router>
         <nav>

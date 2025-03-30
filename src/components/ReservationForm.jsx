@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReservationForm = ({ name, hour, people, setName, setHour, setPeople, onAdd }) => {
   return (
-    <form onSubmit={onAdd} className="flex gap-2 mb-4">
+    <form onSubmit={onAdd} className="reservationForm">
       <input
         type="text"
         placeholder="Name"
