@@ -1,4 +1,3 @@
-import React from "react";
 
 const BillModal = ({ isOpen, onClose, orders, total }) => {
     if (!isOpen) return null;

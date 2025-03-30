@@ -2,7 +2,7 @@ import React from 'react';
 
 const ReservationForm = ({ name, hour, people, setName, setHour, setPeople, onAdd }) => {
   return (
-    <form onSubmit={onAdd} className="reservationForm">
+    <form onSubmit={onAdd} className="reservationForm" style={{margin:"0 auto", textAlign:"center", width:"60%"}}>
       <input
         type="text"
         placeholder="Name"
