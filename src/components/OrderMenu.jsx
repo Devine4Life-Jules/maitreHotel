@@ -13,10 +13,11 @@ const OrderMenu = ({ selectedTable, availableProducts, orders, onAddProduct, onR
                 
                 {/* Order List */}
                 <div>
-                <div>
+                <div style={{display:"flex",gap:"1rem", padding:"1rem"}}>
+                    <button onClick={onClose}>Close Ordering Mode</button>
                     <button onClick={onGetBill} style={{ backgroundColor: 'green', color: 'white' }}>Get Bill</button>
                     <button onClick={onClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>Clear All</button>
-                    <button onClick={onClose}>Close Ordering Mode</button>
+                    
                 </div>
                     <OrderList
                         orders={orders[selectedTable]}
