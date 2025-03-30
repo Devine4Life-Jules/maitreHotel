@@ -187,6 +187,12 @@ nav ul li a {
 }
 
 
+.reservationPage {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+}
+
 .resvationList {
   background-color: white;
   color: black;
@@ -202,6 +208,44 @@ nav ul li a {
   gap: 1rem;
   padding: 1rem;
   border-radius: 10px;
+}
+
+.clientName {
+  font-weight: bold;
+  grid-column: 1;
+  min-width: 100px;
+}
+
+.reservationTime {
+  grid-column: 2;
+}
+
+.peopleAmount {
+  grid-column:3
+}
+
+
+
+.reservationItem {
+  list-style-type: none;
+  background-color: rgb(198, 198, 198);
+  border-radius: 10px;
+  align-items: space-between;
+  display: grid;
+  grid-template-columns: 3rem, 2fr, 2fr, 1fr;
+  gap: 3rem;
+  padding: .4rem;
+  text-align: left;
+  margin-bottom: 1rem;
+  
+
+  
+}
+
+.reservationItem button {
+  background-color: red;
+  display: block;
+  grid-column: 4;
 }
 
 @media (prefers-color-scheme: light) {
