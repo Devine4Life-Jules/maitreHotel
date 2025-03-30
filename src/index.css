@@ -55,8 +55,11 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0;
   min-width: 320px;
-  min-height: 100vh;
+  
 }
 
 h1 {
