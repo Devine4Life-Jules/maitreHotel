@@ -55,7 +55,7 @@ function App() {
   return (
     <div className="bgElement">
       <div className="contentBox" style={{ height: "60vh", width: "60vw" }}>
-        <h1>Maitre d'Hotel</h1>
+        <h1>Maitre d'Hôtel</h1>
         <Router>
           <nav>
             <ul>
