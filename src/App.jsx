@@ -1,6 +1,7 @@
 import './App.css';
 import FloorPlan from './components/FloorPlan';
 import ReservationsComponent from './components/ReservationsComponent';
+import About from './components/About';
 import { useState } from 'react';
 import { HashRouter as Router, Routes, Route, NavLink } from "react-router-dom";
 
@@ -47,26 +48,35 @@ function App() {
     />
   );
 
-  return (
-    <div style={{ height: "60vh", width: "60vw" }}>
-      <h1>Maitre d'Hotel</h1>
-      <Router>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/ReservationsPage">Reservations</NavLink>
-            </li>
-          </ul>
-        </nav>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ReservationsPage" element={<ReservationsPage />} />
-        </Routes>
-      </Router>
+
+
+
+  return (
+    <div className="bgElement">
+      <div className="contentBox" style={{ height: "60vh", width: "60vw" }}>
+        <h1>Maitre d'Hotel</h1>
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/ReservationsPage">Reservations</NavLink>
+              </li>
+              <li>
+                <NavLink to="/AboutPage">About</NavLink>
+              </li>
+            </ul>
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/AboutPage" element={<About />}/>
+            <Route path="/ReservationsPage" element={<ReservationsPage />} />
+          </Routes>
+        </Router>
+      </div>
     </div>
   );
 }

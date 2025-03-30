@@ -6,24 +6,29 @@ const OrderMenu = ({ selectedTable, availableProducts, orders, onAddProduct, onR
         <div>
             <h2>Ordering for Table {selectedTable}</h2>
             <div className="ordering-mode">
+                
             
                 {/* Product Selection */}
                 <ProductList products={availableProducts} onSelect={onAddProduct} />
+                
                 {/* Order List */}
-                <OrderList
-                    orders={orders[selectedTable]}
-                    onIncrease={onAddProduct}
-                    onDecrease={onDecreaseProduct}
-                    onRemove={onRemoveProduct}
-                />
-                {/* Controls */}
-
-            </div>
-            <div>
+                <div>
+                <div>
                     <button onClick={onGetBill} style={{ backgroundColor: 'green', color: 'white' }}>Get Bill</button>
                     <button onClick={onClearAll} style={{ backgroundColor: 'orange', color: 'white' }}>Clear All</button>
                     <button onClick={onClose}>Close Ordering Mode</button>
                 </div>
+                    <OrderList
+                        orders={orders[selectedTable]}
+                        onIncrease={onAddProduct}
+                        onDecrease={onDecreaseProduct}
+                        onRemove={onRemoveProduct}
+                    />
+                </div>
+                {/* Controls */}
+
+            </div>
+
         </div>
     );
 };
